@@ -1,5 +1,7 @@
 # Vec2Vec
 
+> **Project page:** https://vec2vec.github.io/
+
 Vec2Vec is a framework for training GANs (Generative Adversarial Networks) to convert between different embedding models. It allows for the transformation of embeddings from one latent space to another while preserving the semantic relationships between vectors.
 
 ## Overview
