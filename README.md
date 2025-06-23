@@ -12,44 +12,40 @@ Vec2Vec uses adversarial training to learn mappings between different embedding 
 
 ## Configuration
 
-Vec2Vec uses a TOML configuration file with sections for general settings, translator architecture, discriminator parameters, training hyperparameters, GAN-specific settings, evaluation metrics, and logging options.
+Vec2Vec uses a toml configuration file with sections for general settings, translator architecture, discriminator parameters, training hyperparameters, GAN-specific settings, evaluation metrics, and logging options. These files are stored in the `configs/` folder of the repo.
 
 ## Usage
 
-To run the main unsupervised experiment:
+To run the main experiment using the `configs/[EXPERIMENT_NAME].toml` configuration, run:
 
 ```bash
-python train.py unsupervised
+python train.py [EXPERIMENT_NAME] --num_points [NUMBER OF POINTS] --epochs [EPOCHS]
 ```
+
+Most of the experiments in the paper use `configs/unsupervised.toml`.
 
 ### Command Line Arguments
 
-The `train.py` script with the `unsupervised` option accepts various parameters, including:
+Each entry in the toml configuration can be altered in two ways: (1) by directly changing the configuration file, or (2) adding a flag to the run command above.
+The `train.py` script with accepts various parameters, including:
 
 #### General Settings
+- `--num_points`: Number of points to allocate to each encoder
+- `--unsup_points`: Number of points to allocate to the unsupervised encoder (the supervised recieves the rest)
+- `--unsup_emb`: Unsupervised embedding model (e.g., 'gte')
+- `--sup_emb`: Supervised embedding model (e.g., 'gtr')
+- `--dataset`: Dataset to use (e.g., "nq")
+- `--epochs`: Number of epochs to train for
 - `--seed`: Random seed for reproducibility
 - `--sampling_seed`: Seed for sampling operations
 - `--train_dataset_seed`: Seed for training dataset generation
 - `--val_dataset_seed`: Seed for validation dataset generation
-- `--normalize_embeddings`: Whether to normalize embeddings
-- `--mixed_precision`: Precision mode (e.g., 'fp16')
-- `--weight_init`: Weight initialization method
-- `--dataset`: Dataset to use (e.g., "nq")
-- `--max_seq_length`: Maximum sequence length
-- `--unsup_emb`: Unsupervised embedding model (e.g., 'gte')
-- `--sup_emb`: Supervised embedding model (e.g., 'gtr')
-- `--n_embs_per_batch`: Number of embeddings per batch
-- `--finetune_mode`: Enable finetuning mode
-- `--noise_level`: Level of noise to add
 
-#### Translator Architecture
-- `--translator`
+Please refer to the example `.toml` files for all possible settings (there are a lot!).
 
 
 ## The Paper
-our paper is available on ArXiv: [Harnessing the Universal Geometry of Embeddings](https://arxiv.org/abs/2505.12540) (Jha, Zhang, Shmatikov, and Morris, 2025)
-
-please cite it!
+Our paper is available on ArXiv: [Harnessing the Universal Geometry of Embeddings](https://arxiv.org/abs/2505.12540) (Jha, Zhang, Shmatikov, and Morris, 2025). If you find the code useful, please use the following citation:
 
 ```
 @misc{jha2025harnessinguniversalgeometryembeddings,
