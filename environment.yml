@@ -1,4 +1,4 @@
-name: base
+name: vec2vec
 channels:
   - conda-forge
   - defaults
